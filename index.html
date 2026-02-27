@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prince Fruit Bonanza</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="leaves" id="leavesContainer"></div>
+
+<div id="loadingScreen">
+  <div class="load-stars" id="loadStars"></div>
+  <div class="load-zeus">🍒</div>
+  <div class="load-logo">PRINCE FRUIT BONANZA</div>
+  <div class="load-subtitle">JUICY WINS AWAIT</div>
+  <div class="load-bar-wrap"><div class="load-bar-fill" id="loadBar"></div></div>
+  <div class="load-pct" id="loadPct">0%</div>
+  <div class="load-tip" id="loadTip">Summoning the gods of Olympus...</div>
+</div>
+
+<div id="mainMenu" class="hidden">
+  <div class="menu-bg"></div>
+  <div class="pillar left"></div><div class="pillar right"></div>
+  <div class="menu-ground"></div>
+  <div class="menu-lightning-l">🍋</div><div class="menu-lightning-r">🍊</div>
+  <div class="menu-content">
+    <div class="menu-zeus">🍓</div>
+    <div class="menu-title">PRINCE FRUIT BONANZA</div>
+    <div class="menu-tagline">Juicy wins, royal prizes!</div>
+    <div class="menu-divider"></div>
+    <div class="menu-info-row">
+      <span class="menu-badge">🤴 Scatter = 4 Princes</span>
+      <span class="menu-badge">💰 Cluster 8+ to Win</span>
+      <span class="menu-badge">⚡ 10 Free Spins</span>
+    </div>
+    <button class="menu-play-btn" id="playBtn">⚡ PLAY NOW ⚡</button>
+    <div class="menu-info-row"><span class="menu-badge" style="font-size:10px;opacity:.6">Starting Balance: $5,000</span></div>
+  </div>
+</div>
+
+<div id="gameRoot" class="hidden">
+<div class="clouds"><div class="cloud"></div><div class="cloud"></div><div class="cloud"></div></div>
+<div class="win-message" id="winMessage"><div class="win-text" id="winText"></div></div>
+<div class="particles" id="particles"></div>
+
+<div class="fs-overlay" id="fsIntroOverlay">
+  <div class="fs-intro-box">
+    <span class="fs-helmet-anim">🤴</span>
+    <div class="fs-intro-title">FREE SPINS!</div>
+    <div class="fs-intro-sub">THE PRINCE GRANTS YOU</div>
+    <div class="fs-intro-count">10</div>
+    <div class="fs-lightning">⚡⚡⚡</div>
+  </div>
+</div>
+
+<div class="fs-overlay" id="fsSummaryOverlay">
+  <div class="fs-intro-box">
+    <span class="fs-helmet-anim">🏆</span>
+    <div class="fs-intro-title">BONUS COMPLETE!</div>
+    <div class="fs-intro-sub">TOTAL WIN</div>
+    <div class="fs-intro-count" id="fsSummaryWin">$0</div>
+    <div class="fs-lightning">🍒🍋🍇</div>
+  </div>
+</div>
+
+<div class="fs-hud" id="freeSpinHUD" style="display:none">
+  <span class="fs-hud-label">FREE SPINS</span>
+  <span class="fs-hud-count" id="fsCount">0</span>
+</div>
+
+<div class="paytable" id="paytable">
+  <div class="paytable-inner">
+    <h2>🍒 PAYTABLE 🍒</h2>
+    <div class="pay-grid">
+      <div class="pay-card">
+        <div class="pay-sym">🍒</div>
+        <div class="pay-name">Cherry</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 500×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 250×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 100×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍋</div>
+        <div class="pay-name">Lemon</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 250×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 100×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 25×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍇</div>
+        <div class="pay-name">Grapes</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 150×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 50×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 20×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍉</div>
+        <div class="pay-name">Watermelon</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 120×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 20×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 15×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍊</div>
+        <div class="pay-name">Orange</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 100×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 15×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 10×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍓</div>
+        <div class="pay-name">Strawberry</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 80×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 12×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 8×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍑</div>
+        <div class="pay-name">Peach</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 50×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 10×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 5×</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-sym">🍍</div>
+        <div class="pay-name">Pineapple</div>
+        <div class="pay-tier tier-gold">×12+ &nbsp; 40×</div>
+        <div class="pay-tier tier-silver">×10-11 &nbsp; 9×</div>
+        <div class="pay-tier tier-bronze">×8-9 &nbsp; 4×</div>
+      </div>
+      <div class="pay-card pay-scatter-card">
+        <div class="pay-sym"><img src="assets/scatter.png" class="pay-scatter-img" alt="Scatter"></div>
+        <div class="pay-name">Scatter</div>
+        <div class="pay-tier tier-scatter">4 anywhere = 10 Free Spins!</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;color:rgba(180,255,140,.5);font-size:11px;letter-spacing:1px;font-weight:600;">All values shown as multiples of your bet</div>
+    <button class="close-btn" id="paytableCloseBtn">CLOSE</button>
+  </div>
+</div>
+
+<div class="game-scene">
+<div class="game-wrapper">
+  <div class="title-banner">PRINCE FRUIT BONANZA</div>
+  <div class="top-row">
+    <div class="top-left">
+      <button class="info-btn" id="paytableOpenBtn">i</button>
+      <div class="balance-pill"><span class="lbl">BALANCE</span><span id="balanceDisplay">$5000.00</span></div>
+    </div>
+    <button class="buy-fs-btn" id="buyFsBtn">🤴 BUY SPINS</button>
+  </div>
+  <div class="temple-frame"><div class="reel-grid" id="grid"></div></div>
+  <div class="bottom-bar">
+    <div class="booster-wrap" id="boosterWrap">
+      <span class="booster-label-txt">BOOST</span>
+      <button class="boost-toggle" id="boosterBtn" title="Boosted scatter chance!">
+        <span class="boost-toggle-knob"></span>
+      </button>
+    </div>
+    <div class="info-box"><div class="info-label">Total Win</div><div class="info-value total-win" id="winDisplay">$0.00</div></div>
+    <button class="spin-btn" id="spinBtn">SPIN</button>
+    <div class="bet-group">
+      <button class="btn btn-bet" id="betDecBtn">−</button>
+      <button class="bet-display" id="betDisplay">BET: $<span id="betAmount">10</span></button>
+      <button class="btn btn-bet" id="betIncBtn">+</button>
+    </div>
+    <button class="auto-spin-btn" id="autoSpinBtn">🔁 AUTO</button>
+  </div>
+</div>
+<img src="assets/prince.png" alt="Prince" class="game-prince">
+</div>
+
+<div class="buy-modal-overlay" id="buyModal">
+  <div class="buy-modal">
+    <div class="buy-modal-header">
+      <span class="buy-modal-icon">🪙</span>
+      <h2 class="buy-modal-title">BUY FREE SPINS</h2>
+      <p class="buy-modal-sub">Adjust your bet then confirm</p>
+    </div>
+    <div class="buy-single-pkg">
+      <div class="bsp-helmet">🤴</div>
+      <div class="bsp-spins">10</div>
+      <div class="bsp-label">FREE SPINS</div>
+      <div class="bsp-divider"></div>
+      <div class="bsp-bet-row">
+        <button class="bsp-bet-btn" id="buyBetDecBtn">−</button>
+        <div class="bsp-bet-display">BET: $<span id="buyBetDisplay">10</span></div>
+        <button class="bsp-bet-btn" id="buyBetIncBtn">+</button>
+      </div>
+      <div class="bsp-cost-row"><span class="bsp-cost-label">TOTAL COST</span><span class="bsp-cost-value" id="buyModalCost">$1000</span></div>
+      <div class="bsp-formula" id="buyModalFormula">100× bet ($10)</div>
+    </div>
+    <button class="buy-confirm-purchase-btn" id="buyPurchaseBtn">⚡ CONFIRM PURCHASE ⚡</button>
+    <div class="buy-modal-footer"><button class="buy-cancel-btn" id="buyCancelBtn">CANCEL</button></div>
+  </div>
+</div>
+
+<div class="buy-confirm-overlay" id="buyConfirmOverlay">
+  <div class="buy-confirm-box">
+    <div class="buy-confirm-icon" id="buyConfirmIcon">🤴</div>
+    <div class="buy-confirm-title" id="buyConfirmTitle">FREE SPINS PURCHASED!</div>
+    <div class="buy-confirm-sub" id="buyConfirmSub">10 Free Spins Activated</div>
+    <div class="buy-confirm-cost" id="buyConfirmCost">-$100</div>
+  </div>
+</div>
+
+<div class="auto-spin-modal-overlay" id="autoSpinModal">
+  <div class="auto-spin-modal">
+    <div class="auto-spin-modal-title">🔁 AUTO SPIN</div>
+    <div class="auto-spin-modal-sub">SELECT NUMBER OF SPINS</div>
+    <div class="auto-spin-packages">
+      <div class="auto-pkg" data-count="20">
+        <div class="auto-pkg-count">20</div>
+        <div class="auto-pkg-label">SPINS</div>
+        <div class="auto-pkg-cost" id="autoCost20"></div>
+      </div>
+      <div class="auto-pkg" data-count="30">
+        <div class="auto-pkg-count">30</div>
+        <div class="auto-pkg-label">SPINS</div>
+        <div class="auto-pkg-cost" id="autoCost30"></div>
+      </div>
+      <div class="auto-pkg" data-count="50">
+        <div class="auto-pkg-count">50</div>
+        <div class="auto-pkg-label">SPINS</div>
+        <div class="auto-pkg-cost" id="autoCost50"></div>
+      </div>
+    </div>
+    <button class="auto-spin-confirm-btn" id="autoSpinConfirmBtn" disabled>▶ START AUTO SPIN</button>
+    <button class="auto-spin-cancel-btn" id="autoSpinCancelBtn">CANCEL</button>
+  </div>
+</div>
+
+<div class="auto-spin-hud" id="autoSpinHUD">
+  <span class="auto-spin-hud-label">AUTO</span>
+  <span class="auto-spin-hud-count" id="autoSpinCount">0</span>
+  <button class="auto-spin-hud-stop" id="autoSpinStopBtn">■ STOP</button>
+</div>
+</div>
+
+<div class="bet-settings-overlay" id="betSettingsModal">
+  <div class="bet-settings-box">
+    <div class="bet-settings-header">
+      <span class="bet-settings-title">Bet Settings</span>
+      <button class="bet-settings-close" id="betSettingsClose">✕</button>
+    </div>
+    <div class="bet-settings-grid" id="betSettingsGrid"></div>
+    <div class="bet-settings-note" id="betSettingsNote"></div>
+    <button class="bet-settings-accept" id="betSettingsAccept">Accept</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
